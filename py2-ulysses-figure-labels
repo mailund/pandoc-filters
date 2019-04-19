@@ -1,0 +1,13 @@
+#!/usr/bin/env python3
+
+from panflute import *
+
+def add_fig_label(elem, doc):
+    if type(elem) == Image:
+        elem.identifier = elem.title
+
+def main():
+    return run_filter(add_fig_label, doc=None)
+
+if __name__ == "__main__":
+    main()
