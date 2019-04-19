@@ -1,9 +1,9 @@
 
-all: ulysses-figure-labels conditionals
+all: ulysses-figure-labels #conditionals
 
 install: all
 	cp ulysses-figure-labels /usr/local/bin
-	cp conditional /usr/local/bin
+	cp py[12]-ulysses-figure-labels /usr/local/bin
 
 ulysses-figure-labels: ulysses-figure-labels.hs
 	ghc $<

@@ -2,27 +2,45 @@
 import sys
 from pandocfilters import toJSONFilter, Image
 
+from pandocfilters import toJSONFilter, Image
+
 def separator(key, value, format, meta):
     if key == "Image":
-        assert len(value) == 3
-        attr, inline, target = value
-        assert len(attr) == 3
-        assert len(target) == 2
-        
-        if attr[0] != "":
-            return None # there is already a label
-        label = target[1]
-        if label == "fig:":
-            # not really a label
-            return None
+        attr, caption, target = value
+        _, classes, pairs = attr
+        url, name = target
 
-        attr[0] = label
-        return Image(attr, inline, target)
-        
+        return Image((name, classes, pairs),
+                     caption, (url,""))
+
     else:
         # do not change anything.
         return None
 
 if __name__ == '__main__':
     toJSONFilter(separator)
-    
+
+# def separator(key, value, format, meta):
+#     if key == "Image":
+#         assert len(value) == 3
+#         attr, inline, target = value
+#         assert len(attr) == 3
+#         assert len(target) == 2
+#
+#         if attr[0] != "":
+#             return None # there is already a label
+#         label = target[1]
+#         if label == "fig:":
+#             # not really a label
+#             return None
+#
+#         attr[0] = label
+#         return Image(attr, inline, target)
+#
+#     else:
+#         # do not change anything.
+#         return None
+#
+# if __name__ == '__main__':
+#     toJSONFilter(separator)
+# 
