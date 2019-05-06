@@ -2,16 +2,14 @@
 import sys
 from pandocfilters import toJSONFilter, Image
 
-from pandocfilters import toJSONFilter, Image
-
 def separator(key, value, format, meta):
     if key == "Image":
         attr, caption, target = value
-        _, classes, pairs = attr
+        _, classes, options = attr
         url, name = target
 
-        return Image((name, classes, pairs),
-                     caption, (url,""))
+        return Image((name, classes, options),
+                     caption, (url, name))
 
     else:
         # do not change anything.
@@ -43,4 +41,4 @@ if __name__ == '__main__':
 #
 # if __name__ == '__main__':
 #     toJSONFilter(separator)
-# 
+#

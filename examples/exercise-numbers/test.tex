@@ -1,0 +1,36 @@
+\documentclass{book}
+
+\newcounter{exercounter}[chapter]
+\newcommand{\theexercise}{\thechapter.\arabic{exercounter}}
+\makeatletter
+\newenvironment{exercises}{%
+  \par\refstepcounter{exercounter}\protected@edef\@currentlabel{\theexercise}%
+  \noindent\textbf{Exercise \theexercise}}{}
+\makeatother
+
+%\usepackage{noindentafter}
+%\NoIndentAfterEnv{qd}
+
+\begin{document}
+
+\chapter{First chapter}
+This is the first chapter.
+
+\section{First section}
+This is the first section.
+
+\subsection{First subsection}
+This is the first subsection.
+
+\begin{exercises}\label{qd:emp} This is my environment. \end{exercises}
+
+In quasi definition \ref{qd:emp} it \dots
+
+\section{second section}
+This is the first subsection.
+
+\begin{exercises}\label{qd:emp2} This is my environment. \end{exercises}
+
+In quasi definition \ref{qd:emp2} it \dots
+
+\end{document}
