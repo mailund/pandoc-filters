@@ -1,0 +1,115 @@
+\documentclass[11pt, openright, twoside, onecolumn, final]{memoir} %final
+
+\usepackage[T1]{fontenc}
+\usepackage{baskervillef}
+\usepackage[varqu,varl,var0]{inconsolata}
+\usepackage[scale=.95,type1]{cabin}
+\usepackage[baskerville,vvarbb]{newtxmath}
+\usepackage[cal=boondoxo]{mathalfa}
+
+\usepackage{nohyperref}  % This makes hyperref commands do nothing without errors
+\usepackage{url}
+
+\setstocksize{9in}{6in}
+\settrimmedsize{\stockheight}{\stockwidth}{*}
+\usepackage{canoniclayout}
+\nonzeroparskip
+\setlength{\parindent}{0pt}
+
+
+\renewcommand*\rmdefault{dayrom}
+\chapterstyle{madsen}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{graphicx}
+\makeatother
+\let\Oldincludegraphics\includegraphics
+\renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=\textwidth]{#1}}
+\usepackage[protrusion=true,expansion=true]{microtype}
+\setlength{\pdfpagewidth}{\paperwidth}
+\setlength{\pdfpageheight}{\paperheight}
+
+\usepackage{listings}
+$if(tables)$
+\usepackage{longtable,booktabs}
+$endif$
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e}
+\usepackage{textcomp}
+
+\setsecnumdepth{chapter}
+
+\makeatletter
+\renewcommand{\thefigure}{S\@arabic\c@figure}
+\makeatother
+
+\setlength\cftpartnumwidth{3em}
+\setlength\cftchapternumwidth{3em}
+\setlength\cftsectionindent{3em}
+\renewcommand\contentsname{Table of Contents}
+
+\usepackage{chngcntr}
+
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+
+\begin{document}
+
+\frontmatter
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\begingroup
+\thispagestyle{empty}
+{\bfseries\sffamily\noindent
+$if(series)$ {\large $series$}\\[50pt]$endif$ % Subtitle
+{\huge $title$}\\[35pt] % Book title
+{\Large $for(author)$$author$$sep$\\$endfor$} % Author name
+}
+\vfill
+\endgroup
+
+
+%----------------------------------------------------------------------------------------
+%	COPYRIGHT PAGE
+%----------------------------------------------------------------------------------------
+
+\newpage
+~\vfill
+\thispagestyle{empty}
+{\Large $title$}\\[15pt] % Book title
+\noindent Copyright $year$ Thomas Mailund\\ % Copyright notice
+$if(piccopyright)$\\[5pt]$piccopyright$\\ $endif$
+\clearpage
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+$if(toc)$
+\setcounter{tocdepth}{1}
+\pagestyle{empty} % No headers
+\tableofcontents % Print the table of contents itself
+\cleardoublepage % Forces the first chapter to start on an odd page so it's on the right
+$endif$
+
+
+%----------------------------------------------------------------------------------------
+%	BODY
+%----------------------------------------------------------------------------------------
+
+\mainmatter
+\counterwithout{figure}{chapter}
+
+\pagestyle{plain}                %% page numbering
+$body$
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

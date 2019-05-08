@@ -1,0 +1,7 @@
+\newcounter{exercounter}[section]
+\newcommand{\theexercise}{\thesection.\arabic{exercounter}}
+\makeatletter
+\newenvironment{exercises}{%
+\par\refstepcounter{exercounter}\protected@edef\@currentlabel{\theexercise}%
+\noindent\textbf{Exercise \theexercise}}{}
+\makeatother

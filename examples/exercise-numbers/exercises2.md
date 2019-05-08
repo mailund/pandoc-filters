@@ -1,10 +1,24 @@
-See [@ex:ex1] and [@ex:ex2].
+---
+header-includes: |
+    \newcounter{exercounter}[section]
+    \newcommand{\theexercise}{\thesection.\arabic{exercounter}}
+    \makeatletter
+    \newenvironment{exercises}{%
+    \par\refstepcounter{exercounter}\protected@edef\@currentlabel{\theexercise}%
+    \noindent\textbf{Exercise \theexercise}}{}
+    \makeatother
 
-::: {#ex1 .Exercise}
+---
+
+
+
+[[See Exercise 1 @ex:ex1]]{.out .html} [[See @ex:ex2]]{.out .latex}
+
+
+::: {#ex:ex1 .Exercise}
 First exercise
 :::
 
-::: {#ex1 .Exercise}
+::: {#ex:ex2 .Exercise}
 Second exercise
 :::
-
